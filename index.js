@@ -86,11 +86,12 @@ import react from "react";
         return actions;
     }
     
-    const ReDucks = 
-    {
-        'useRenderTrigger'             : useRenderTrigger,
-        'useObjectValueMutator'        : useObjectValueMutator,
-        'useObjectMutator'             : useObjectMutator,
-        'useObjectEntriesMutator'      : useObjectEntriesMutator,
-        'useArrayMutator'              : useArrayMutator,
-    };
+export const ReDucks = 
+{
+    'useRenderTrigger'             : useRenderTrigger,
+    'useObjectValueMutator'        : useObjectValueMutator,
+    'useObjectMutator'             : useObjectMutator,
+    'useObjectEntriesMutator'      : useObjectEntriesMutator,
+    'useArrayMutator'              : useArrayMutator,
+};
+
