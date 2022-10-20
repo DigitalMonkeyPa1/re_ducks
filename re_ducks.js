@@ -57,14 +57,14 @@ import {useReducer} from "react";
     
     const ArrayMutatorActions = 
         {
-            add             : (newObj) => { arr.push(newObj); },
-            addClone        : (newObjRef)=>{ var newObj = cloneObj(newObjRef); arr.push(newObj); },
-            addDefaultClone : ()=>{ var newObj = cloneObj(defaultNewObjRef); arr.push(newObj); },
-            update          : (newObj, i)=>{ arr[i]=newObj; },
-            remove          : (i)=>{ var removedObjs = arr.splice(i, 1); return (removedObjs && removedObjs.length>0) ? removedObjs[0] : null; },
-            reorder         : (iOld, iNew)=>{ var t=arr[iOld]; arr.splice(iOld, 1); arr.splice(iNew, 0, t); },
-            swap            : (i, j)=>{ var t=arr[i]; arr[i]=arr[j]; arr[j]=t; },
-            swapObjProp     : (i, j, propName='')=>{ if(i>=0 && i<arr.length && j>=0 && j<arr.length){var tempPropVal=arr[i][propName]; arr[i][propName]=arr[j][propName]; arr[j][propName]=tempPropVal;} }
+            add             : (arr, newObj) => { arr.push(newObj); },
+            addClone        : (arr, newObjRef)=>{ var newObj = cloneObj(newObjRef); arr.push(newObj); },
+            addDefaultClone : (arr)=>{ var newObj = cloneObj(defaultNewObjRef); arr.push(newObj); },
+            update          : (arr, newObj, i)=>{ arr[i]=newObj; },
+            remove          : (arr, i)=>{ var removedObjs = arr.splice(i, 1); return (removedObjs && removedObjs.length>0) ? removedObjs[0] : null; },
+            reorder         : (arr, iOld, iNew)=>{ var t=arr[iOld]; arr.splice(iOld, 1); arr.splice(iNew, 0, t); },
+            swap            : (arr, i, j)=>{ var t=arr[i]; arr[i]=arr[j]; arr[j]=t; },
+            swapObjProp     : (arr, i, j, propName='')=>{ if(i>=0 && i<arr.length && j>=0 && j<arr.length){var tempPropVal=arr[i][propName]; arr[i][propName]=arr[j][propName]; arr[j][propName]=tempPropVal;} }
         };
     
     function useArrayMutator(arr=[], triggerRerender, defaultNewObjRef=null)
@@ -73,14 +73,14 @@ import {useReducer} from "react";
         
         const actions = 
         {
-            add             : (newObj, preMutate=null, postMutate=null) =>     { callFunction(preMutate); ArrayMutatorActions.add(newObj); callFunction(postMutate); triggerRerender(); },
-            addClone        : (newObjRef, preMutate=null, postMutate=null) =>  { callFunction(preMutate); ArrayMutatorActions.cloneObj(newObjRef); callFunction(postMutate); triggerRerender(); },
-            addDefaultClone : (preMutate=null, postMutate=null) =>             { callFunction(preMutate); ArrayMutatorActions.addDefaultClone(); callFunction(postMutate); triggerRerender(); },
-            update          : (newObj, i, preMutate=null, postMutate=null) =>  { callFunction(preMutate); ArrayMutatorActions.update(newObj); callFunction(postMutate); triggerRerender(); },
-            remove          : (i, preMutate=null, postMutate=null) =>          { callFunction(preMutate); var removedObjs = ArrayMutatorActions.remove(i); callFunction(postMutate); triggerRerender(); return removedObjs; },
-            reorder         : (iOld, iNew, preMutate=null, postMutate=null) => { callFunction(preMutate); ArrayMutatorActions.reorder(iOld, iNew); callFunction(postMutate); triggerRerender(); },
-            swap            : (i, j, preMutate=null, postMutate=null) =>       { callFunction(preMutate); ArrayMutatorActions.swap(i, j); callFunction(postMutate); triggerRerender(); },
-            swapObjProp     : (i, j, propName='', preMutate=null, postMutate=null) => { callFunction(preMutate); ArrayMutatorActions.swapObjProp(i, j, propName); callFunction(postMutate); triggerRerender(); }
+            add             : (newObj, preMutate=null, postMutate=null) =>     { callFunction(preMutate); ArrayMutatorActions.add(arr, newObj); callFunction(postMutate); triggerRerender(); },
+            addClone        : (newObjRef, preMutate=null, postMutate=null) =>  { callFunction(preMutate); ArrayMutatorActions.cloneObj(arr, newObjRef); callFunction(postMutate); triggerRerender(); },
+            addDefaultClone : (preMutate=null, postMutate=null) =>             { callFunction(preMutate); ArrayMutatorActions.addDefaultClone(arr); callFunction(postMutate); triggerRerender(); },
+            update          : (newObj, i, preMutate=null, postMutate=null) =>  { callFunction(preMutate); ArrayMutatorActions.update(arr, newObj); callFunction(postMutate); triggerRerender(); },
+            remove          : (i, preMutate=null, postMutate=null) =>          { callFunction(preMutate); var removedObjs = ArrayMutatorActions.remove(arr, i); callFunction(postMutate); triggerRerender(); return removedObjs; },
+            reorder         : (iOld, iNew, preMutate=null, postMutate=null) => { callFunction(preMutate); ArrayMutatorActions.reorder(arr, iOld, iNew); callFunction(postMutate); triggerRerender(); },
+            swap            : (i, j, preMutate=null, postMutate=null) =>       { callFunction(preMutate); ArrayMutatorActions.swap(arr, i, j); callFunction(postMutate); triggerRerender(); },
+            swapObjProp     : (i, j, propName='', preMutate=null, postMutate=null) => { callFunction(preMutate); ArrayMutatorActions.swapObjProp(arr, i, j, propName); callFunction(postMutate); triggerRerender(); }
         };
         
         return actions;

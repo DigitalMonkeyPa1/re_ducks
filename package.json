@@ -1,6 +1,6 @@
 {
   "name": "@digitalmonkeypa1/re_ducks",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A simple state manager for React, it quacks!",
   "main": "re_ducks.js",
   "scripts": {
