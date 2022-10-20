@@ -1,4 +1,4 @@
-import react from "react";
+import {useReducer} from "react";
 
     function callFunction(func, ...args) { if(func && (typeof func==="function")) return func(...args); else return null; }
     
@@ -6,7 +6,7 @@ import react from "react";
 
     function useRenderTrigger(tag='DEFAULT')
     {
-        const [renderTriggerValue, triggerRerender] = React.useReducer( ()=>Math.random(), Math.random() );
+        const [renderTriggerValue, triggerRerender] = useReducer( ()=>Math.random(), Math.random() );
         return triggerRerender;
     }
     
