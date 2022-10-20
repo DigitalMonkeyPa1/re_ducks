@@ -86,7 +86,7 @@ import {useReducer} from "react";
         return actions;
     }
     
-export const ReDucks = 
+const ReDucks = 
 {
     'useRenderTrigger'             : useRenderTrigger,
     'useObjectValueMutator'        : useObjectValueMutator,
@@ -95,3 +95,4 @@ export const ReDucks =
     'useArrayMutator'              : useArrayMutator,
 };
 
+export default ReDucks;
